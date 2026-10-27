@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ec4899">
+<title>Glamour Salon Eldoret - Braids & Beauty</title>
+<style>
+body{max-width:420px;margin:auto;font-family:sans-serif;padding:12px;background:#fff5f7}
+.card{border:1px solid #ffe4e6;border-radius:16px;overflow:hidden;background:white;margin-bottom:14px;box-shadow:0 2px 8px rgba(236,72,153,0.1)}
+.btn{background:#ec4899;color:white;padding:8px 14px;border-radius:20px;text-decoration:none;float:right;font-size:14px;font-weight:bold}
+#install{position:fixed;bottom:12px;left:12px;right:12px;background:#ec4899;color:white;padding:15px;border-radius:12px;text-align:center;display:none;z-index:999;font-weight:bold}
+</style>
+</head>
+<body>
+
+<h2 style="margin-bottom:2px">💅 Glamour Salon</h2>
+<p style="color:gray;margin-top:0">Eldoret CBD - Opposite Naivas | Book on WhatsApp</p>
+
+<a href="https://wa.me/254700000000?text=Hi%20Glamour%20Salon,%20nataka%20kujua%20bei%20ya" style="background:#25D366;color:white;padding:14px;display:block;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold;margin:12px 0">💬 Book on WhatsApp</a>
+
+<div id="list"></div>
+
+<div style="text-align:center;padding:20px;color:gray;font-size:12px">Open 7am - 8pm Daily | Walk-ins welcome</div>
+<div id="install" onclick="installApp()">⬇️ Add Salon App to Phone</div>
+
+<script>
+const PRODUCTS = [
+ {name:"Knotless Braids", price:2500, image:"https://images.unsplash.com/photo-1560869713-7d0a29430803?w=500", desc:"Medium, waist length + free wash"},
+ {name:"Fulani Braids", price:2000, image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", desc:"With beads, 3hrs"},
+ {name:"Weave Installation", price:1500, image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500", desc:"Closure + styling"},
+ {name:"Manicure + Pedicure", price:800, image:"https://images.unsplash.com/photo-1604654894610-df63bc536371?w=500", desc:"Gel polish included"},
+ {name:"Ladies Haircut", price:500, image:"https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=500", desc:"Trim + treatment"}
+];
+
+document.getElementById('list').innerHTML = PRODUCTS.map(p=>`
+<div class="card">
+<img src="${p.image}" style="width:100%;height:240px;object-fit:cover">
+<div style="padding:13px">
+<b style="font-size:17px">${p.name}</b><br>
+<span style="color:gray;font-size:13px">${p.desc}</span><br>
+<div style="margin-top:8px">
+<span style="font-weight:bold;font-size:16px;color:#ec4899">KES ${p.price}</span>
+<a class="btn" href="https://wa.me/254700000000?text=Nataka ${encodeURIComponent(p.name)} - KES ${p.price}">Book Now</a>
+<div style="clear:both"></div>
+</div>
+</div></div>`).join('');
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; document.getElementById('install').style.display = 'block'; });
+function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); } else{ alert('Tap Chrome 3 dots > Add to Home screen'); } document.getElementById('install').style.display='none'; }
+setTimeout(()=>{ const el=document.getElementById('install'); if(el.style.display==='none') el.style.display='block'; setTimeout(()=>el.style.display='none',9000); },3000);
+</script>
+</body>
+</html>
