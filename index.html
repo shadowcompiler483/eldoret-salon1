@@ -1,38 +1,65 @@
-export default function Home() {
-  return (
-    <div style={{fontFamily:'Arial', background:'#fdf2f8', minHeight:'100vh'}}>
-      <div style={{background:'linear-gradient(135deg,#ec4899,#8b5cf6)', color:'white', padding:'24px 15px', textAlign:'center'}}>
-        <h1 style={{fontSize:'26px', fontWeight:'bold'}}>💇‍♀️ Glamour Salon</h1>
-        <p style={{fontSize:'13px', marginTop:'6px'}}>Eldoret CBD - Behind Naivas | Open 8am - 8pm</p>
-        <p style={{fontSize:'12px', marginTop:'6px'}}>⭐ 4.9 (127 reviews) | 3 stylists available today</p>
-      </div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ec4899">
+<title>Glamour Salon - Eldoret</title>
+<style>
+*{box-sizing:border-box}
+body{max-width:430px;margin:0 auto;font-family:-apple-system,system-ui,sans-serif;padding:0;background:#fff5f7}
+.header{padding:16px;background:white}
+.card{margin:12px;border:1px solid #ffe4e6;border-radius:18px;overflow:hidden;background:white;box-shadow:0 4px 12px rgba(236,72,153,0.08)}
+.card img{width:100%;height:260px;object-fit:cover;display:block}
+.btn{background:#ec4899;color:white;padding:10px 18px;border-radius:24px;text-decoration:none;float:right;font-weight:700;font-size:14px}
+.price{font-weight:800;font-size:17px;color:#ec4899}
+#install{position:fixed;bottom:16px;left:16px;right:16px;background:#ec4899;color:white;padding:16px;border-radius:14px;text-align:center;display:none;z-index:999;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,0.2)}
+</style>
+</head>
+<body>
 
-      <a href="https://wa.me/254701771654?text=Hi%20Glamour%20Salon" 
-         style={{background:'#16a34a', color:'white', display:'block', textAlign:'center', padding:'14px', borderRadius:'12px', textDecoration:'none', fontWeight:'bold', margin:'15px'}}>
-         Book on WhatsApp
-      </a>
+<div class="header">
+<h2 style="margin:0 0 4px 0">Glamour Salon</h2>
+<p style="margin:0;color:#6b7280;font-size:14px">Eldoret CBD • Open 7am - 8pm Daily</p>
+<a id="topWa" href="#" style="background:#25D366;color:white;padding:14px;display:block;text-align:center;border-radius:12px;text-decoration:none;font-weight:700;margin:14px 0 0 0">Book on WhatsApp</a>
+</div>
 
-      {[
-        {name:'Braids - Knotless', time:'4 hours - With extension', price:'KES 2,500'},
-        {name:'Weave Installation', time:'2 hours - Wash included', price:'KES 2,000'},
-        {name:'Gel Polish + Manicure', time:'1 hour - Lasts 3 weeks', price:'KES 800'},
-        {name:'Silk Press + Treatment', time:'2.5 hours - Natural hair', price:'KES 1,500'},
-      ].map(s => (
-        <div key={s.name} style={{background:'white', margin:'0 15px 12px 15px', padding:'12px', borderRadius:'12px', display:'flex', justifyContent:'space-between', alignItems:'center', boxShadow:'0 1px 4px #ddd'}}>
-          <div>
-            <h3 style={{fontSize:'14px', fontWeight:'bold'}}>{s.name}</h3>
-            <p style={{fontSize:'11px', color:'#666'}}>{s.time}</p>
-            <p style={{color:'#ec4899', fontWeight:'bold', fontSize:'13px', marginTop:'4px'}}>{s.price}</p>
-          </div>
-          <a href={`https://wa.me/254701771654?text=I want ${s.name} ${s.price}`} style={{background:'black', color:'white', padding:'6px 12px', borderRadius:'6px', textDecoration:'none', fontSize:'12px'}}>Book</a>
-        </div>
-      ))}
+<div id="list"></div>
 
-      <div style={{background:'white', margin:'15px', padding:'12px', borderRadius:'12px', textAlign:'center', fontSize:'12px', color:'#555'}}>
-        📍 Zion Mall 2nd Floor, Eldoret<br/>💳 Till 123456 | M-Pesa | ⏰ Slots: 9am, 11am, 2pm, 4pm
-      </div>
+<div style="text-align:center;padding:24px;color:#9ca3af;font-size:12px">Professional Beauty Services • Walk-ins Welcome</div>
+<div id="install" onclick="installApp()">Add to Home Screen</div>
 
-      <p style={{textAlign:'center', fontSize:'11px', color:'#888', padding:'15px'}}>Built by shadowcompiler483 - 0701771654</p>
-    </div>
-  )
-}
+<script>
+// === CHANGE ONLY THIS NUMBER ===
+const PHONE = "254700000000"; // put real number e.g. 254712345678
+
+const PRODUCTS = [
+ {name:"Knotless Braids", price:2500, image:"https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&w=500", desc:"Medium length, waist length, wash included"},
+ {name:"Fulani Braids", price:2000, image:"https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&w=500", desc:"With beads, 3 hours service"},
+ {name:"Weave Installation", price:1500, image:"https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&w=500", desc:"Closure and styling included"},
+ {name:"Manicure & Pedicure", price:800, image:"https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&w=500", desc:"Gel polish included"},
+ {name:"Haircut & Treatment", price:500, image:"https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&w=500", desc:"Trim and hair treatment"}
+];
+
+const list = document.getElementById('list');
+list.innerHTML = PRODUCTS.map(p=>`
+<div class="card">
+<img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/500x260?text=${encodeURIComponent(p.name)}'">
+<div style="padding:14px">
+<div style="font-size:18px;font-weight:700">${p.name}</div>
+<div style="color:#6b7280;font-size:13px;margin:4px 0 10px 0">${p.desc}</div>
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span class="price">KES ${p.price}</span>
+<a class="btn" href="https://wa.me/${PHONE}?text=I%20want%20${encodeURIComponent(p.name)}%20-%20KES%20${p.price}">Book Now</a>
+</div>
+</div></div>`).join('');
+
+document.getElementById('topWa').href = `https://wa.me/${254701771654}?text=Hi%20Glamour%20Salon,%20I%20would%20like%20to%20book`;
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('install').style.display='block'; });
+function installApp(){ if(deferredPrompt) deferredPrompt.prompt(); else alert('Tap Chrome menu > Add to Home Screen'); document.getElementById('install').style.display='none'; }
+setTimeout(()=>{ const el=document.getElementById('install'); if(el.style.display==='none'){ el.style.display='block'; setTimeout(()=>el.style.display='none',8000); } },3000);
+</script>
+</body>
+</html>
