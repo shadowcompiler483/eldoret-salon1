@@ -21,18 +21,15 @@ body{max-width:430px;margin:0 auto;font-family:-apple-system,system-ui,sans-seri
 <div class="header">
 <h2 style="margin:0 0 4px 0">Glamour Salon</h2>
 <p style="margin:0;color:#6b7280;font-size:14px">Eldoret CBD • Open 7am - 8pm Daily</p>
-<a id="topWa" href="#" style="background:#25D366;color:white;padding:14px;display:block;text-align:center;border-radius:12px;text-decoration:none;font-weight:700;margin:14px 0 0 0">Book on WhatsApp</a>
+<a href="https://wa.me/254701771654?text=Hi%20Glamour%20Salon,%20I%20would%20like%20to%20book" style="background:#25D366;color:white;padding:14px;display:block;text-align:center;border-radius:12px;text-decoration:none;font-weight:700;margin:14px 0 0 0">Book on WhatsApp</a>
 </div>
 
 <div id="list"></div>
 
-<div style="text-align:center;padding:24px;color:#9ca3af;font-size:12px">Professional Beauty Services • Walk-ins Welcome</div>
+<div style="text-align:center;padding:24px;color:#9ca3af;font-size:12px">Professional Beauty Services • Walk-ins Welcome<br>Contact: 0701771654</div>
 <div id="install" onclick="installApp()">Add to Home Screen</div>
 
 <script>
-// === CHANGE ONLY THIS NUMBER ===
-const PHONE = "254700000000"; // put real number e.g. 254712345678
-
 const PRODUCTS = [
  {name:"Knotless Braids", price:2500, image:"https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&w=500", desc:"Medium length, waist length, wash included"},
  {name:"Fulani Braids", price:2000, image:"https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&w=500", desc:"With beads, 3 hours service"},
@@ -41,8 +38,7 @@ const PRODUCTS = [
  {name:"Haircut & Treatment", price:500, image:"https://images.pexels.com/photos/3065209/pexels-photo-3065209.jpeg?auto=compress&w=500", desc:"Trim and hair treatment"}
 ];
 
-const list = document.getElementById('list');
-list.innerHTML = PRODUCTS.map(p=>`
+document.getElementById('list').innerHTML = PRODUCTS.map(p=>`
 <div class="card">
 <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/500x260?text=${encodeURIComponent(p.name)}'">
 <div style="padding:14px">
@@ -50,11 +46,9 @@ list.innerHTML = PRODUCTS.map(p=>`
 <div style="color:#6b7280;font-size:13px;margin:4px 0 10px 0">${p.desc}</div>
 <div style="display:flex;justify-content:space-between;align-items:center">
 <span class="price">KES ${p.price}</span>
-<a class="btn" href="https://wa.me/${PHONE}?text=I%20want%20${encodeURIComponent(p.name)}%20-%20KES%20${p.price}">Book Now</a>
+<a class="btn" href="https://wa.me/254701771654?text=I%20want%20${encodeURIComponent(p.name)}%20-%20KES%20${p.price}">Book Now</a>
 </div>
 </div></div>`).join('');
-
-document.getElementById('topWa').href = `https://wa.me/${254701771654}?text=Hi%20Glamour%20Salon,%20I%20would%20like%20to%20book`;
 
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('install').style.display='block'; });
