@@ -1,58 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Glamour Salon Eldoret - Book Now</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial;background:#fdf2f8;padding:0}
-.hero{background:linear-gradient(135deg,#ec4899,#8b5cf6);color:white;padding:30px 15px;text-align:center}
-.hero h1{font-size:32px}
-.hero p{margin-top:8px;opacity:.9}
-.btn-main{background:#16a34a;color:white;display:block;text-align:center;padding:16px;border-radius:12px;text-decoration:none;font-weight:bold;margin:15px;font-size:18px}
-.container{padding:15px}
-.card{background:white;padding:14px;border-radius:12px;box-shadow:0 2px 8px #ddd;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
-.card h3{font-size:16px}
-.card p{font-size:13px;color:#666}
-.price{color:#ec4899;font-weight:bold;margin-top:4px}
-.book{background:black;color:white;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:13px}
-.badge{text-align:center;background:white;margin:15px;padding:12px;border-radius:12px;font-size:13px;color:#555}
-.footer{text-align:center;font-size:11px;color:#888;padding:20px}
-</style>
-</head>
-<body>
+export default function Home() {
+  return (
+    <div style={{fontFamily:'Arial', background:'#fdf2f8', minHeight:'100vh'}}>
+      <div style={{background:'linear-gradient(135deg,#ec4899,#8b5cf6)', color:'white', padding:'24px 15px', textAlign:'center'}}>
+        <h1 style={{fontSize:'26px', fontWeight:'bold'}}>💇‍♀️ Glamour Salon</h1>
+        <p style={{fontSize:'13px', marginTop:'6px'}}>Eldoret CBD - Behind Naivas | Open 8am - 8pm</p>
+        <p style={{fontSize:'12px', marginTop:'6px'}}>⭐ 4.9 (127 reviews) | 3 stylists available today</p>
+      </div>
 
-<div class="hero">
-<h1>💇‍♀️ Glamour Salon</h1>
-<p>Eldoret CBD - Behind Naivas | Open 8am - 8pm</p>
-<p style="margin-top:10px;font-size:14px">⭐ 4.9 (127 reviews) | 3 stylists available today</p>
-</div>
+      <a href="https://wa.me/254701771654?text=Hi%20Glamour%20Salon" 
+         style={{background:'#16a34a', color:'white', display:'block', textAlign:'center', padding:'14px', borderRadius:'12px', textDecoration:'none', fontWeight:'bold', margin:'15px'}}>
+         Book on WhatsApp
+      </a>
 
-<a class="btn-main" href="https://wa.me/254701771654?text=Hi%20Glamour%20Salon%20💅%0AI%20want%20to%20book%3A%0A%0AService%3A%20%0ADate%3A%20%0ATime%3A%20%0AName%3A%20">💬 Book on WhatsApp</a>
+      {[
+        {name:'Braids - Knotless', time:'4 hours - With extension', price:'KES 2,500'},
+        {name:'Weave Installation', time:'2 hours - Wash included', price:'KES 2,000'},
+        {name:'Gel Polish + Manicure', time:'1 hour - Lasts 3 weeks', price:'KES 800'},
+        {name:'Silk Press + Treatment', time:'2.5 hours - Natural hair', price:'KES 1,500'},
+      ].map(s => (
+        <div key={s.name} style={{background:'white', margin:'0 15px 12px 15px', padding:'12px', borderRadius:'12px', display:'flex', justifyContent:'space-between', alignItems:'center', boxShadow:'0 1px 4px #ddd'}}>
+          <div>
+            <h3 style={{fontSize:'14px', fontWeight:'bold'}}>{s.name}</h3>
+            <p style={{fontSize:'11px', color:'#666'}}>{s.time}</p>
+            <p style={{color:'#ec4899', fontWeight:'bold', fontSize:'13px', marginTop:'4px'}}>{s.price}</p>
+          </div>
+          <a href={`https://wa.me/254701771654?text=I want ${s.name} ${s.price}`} style={{background:'black', color:'white', padding:'6px 12px', borderRadius:'6px', textDecoration:'none', fontSize:'12px'}}>Book</a>
+        </div>
+      ))}
 
-<div class="container">
+      <div style={{background:'white', margin:'15px', padding:'12px', borderRadius:'12px', textAlign:'center', fontSize:'12px', color:'#555'}}>
+        📍 Zion Mall 2nd Floor, Eldoret<br/>💳 Till 123456 | M-Pesa | ⏰ Slots: 9am, 11am, 2pm, 4pm
+      </div>
 
-<div class="card">
-<div>
-<h3>Braids - Knotless</h3>
-<p>4 hours • With extension</p>
-<p class="price">KES 2,500</p>
-</div>
-<a class="book" href="https://wa.me/254701771654?text=Hi%20Glamour%20I%20want%20Braids%20Knotless%20KES%202500%0ADate%3A%20%0ATime%3A%20">Book</a>
-</div>
-
-<div class="card">
-<div>
-<h3>Weave Installation</h3>
-<p>2 hours • Wash included</p>
-<p class="price">KES 2,000</p>
-</div>
-<a class="book" href="https://wa.me/254701771654?text=Hi%20Glamour%20I%20want%20Weave%20Installation%20KES%202000%0ADate%3A%20%0ATime%3A%20">Book</a>
-</div>
-
-<div class="card">
-<div>
-<h3>Gel Polish + Manicure</h3>
-<p>1 hour • Lasts 3 weeks</p>
-<p class="price">KES 800</p>
-</div
+      <p style={{textAlign:'center', fontSize:'11px', color:'#888', padding:'15px'}}>Built by shadowcompiler483 - 0701771654</p>
+    </div>
+  )
+}
